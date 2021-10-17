@@ -3,7 +3,7 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-
+const {isDev} = require('@pallad/app-env');
 const projects = require('./projects');
 
 /** @type {import('@docusaurus/types').Config} */
@@ -20,8 +20,10 @@ const config = {
             '@docusaurus/preset-classic',
             /** @type {import('@docusaurus/preset-classic').Options} */
             ({
+                debug: isDev,
                 docs: false,
                 blog: false,
+                pages: false,
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
                 },
@@ -34,8 +36,8 @@ const config = {
                 '@docusaurus/plugin-content-docs',
                 {
                     id: x.name,
-                    path: `./docs/${x.name}`,
-                    routeBasePath: `${x.name}/docs`
+                    path: `./projects/${x.name}/docs`,
+                    routeBasePath: `${x.name}/docs`,
                 }
             ]
         }),
@@ -61,34 +63,6 @@ const config = {
 
             footer: {
                 style: 'dark',
-                links: [
-                    {
-                        title: 'Projects',
-                        items: [
-                            {
-                                label: 'app-env',
-                                to: '/app-env/docs',
-                            },
-                        ],
-                    },
-                    {
-                        title: 'Community',
-                        items: [
-                            {
-                                label: 'Stack Overflow',
-                                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-                            },
-                            {
-                                label: 'Discord',
-                                href: 'https://discordapp.com/invite/docusaurus',
-                            },
-                            {
-                                label: 'Twitter',
-                                href: 'https://twitter.com/docusaurus',
-                            },
-                        ],
-                    },
-                ],
                 copyright: `Copyright © ${new Date().getFullYear()} - Built with Docusaurus.`,
             },
             prism: {
