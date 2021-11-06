@@ -1,19 +1,17 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const {isDev} = require('@pallad/app-env');
 const projects = require('./projects');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-    title: 'Pallad Tools',
+    title: 'Pallad',
     url: 'https://your-docusaurus-test-site.com',
     baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
-    favicon: 'img/favicon.ico',
+    favicon: 'images/logo_auto.svg',
     organizationName: 'pallad-ts', // Usually your GitHub org/user name.
     presets: [
         [
@@ -31,26 +29,37 @@ const config = {
         ],
     ],
     plugins: [
-        ...projects.map(x => {
-            return [
-                '@docusaurus/plugin-content-docs',
-                {
-                    id: x.name,
-                    path: `./projects/${x.name}/docs`,
-                    routeBasePath: `${x.name}/docs`,
-                }
-            ]
-        }),
+        ...projects.filter(x => x.hasDocs)
+            .map(x => {
+                return [
+                    '@docusaurus/plugin-content-docs',
+                    {
+                        id: x.name,
+                        path: `./projects/${x.name}/docs`,
+                        routeBasePath: `${x.name}`,
+                        remarkPlugins: [
+                            [require('@docusaurus/remark-plugin-npm2yarn'), {sync: true}],
+                        ],
+                    }
+                ]
+            }),
+        [
+            '@docusaurus/plugin-content-pages',
+            {
+                path: 'src/pages'
+            }
+        ]
     ],
 
     themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
             navbar: {
-                title: 'My Site',
+                title: 'Pallad',
                 logo: {
-                    alt: 'My Site Logo',
-                    src: 'img/logo.svg',
+                    alt: 'Pallad',
+                    src: 'images/logo.svg',
+                    srcDark: 'images/logo_white.svg',
                 },
                 items: [
                     {
@@ -60,14 +69,13 @@ const config = {
                     },
                 ],
             },
-
             footer: {
                 style: 'dark',
                 copyright: `Copyright © ${new Date().getFullYear()} - Built with Docusaurus.`,
             },
             prism: {
-                theme: lightCodeTheme,
-                darkTheme: darkCodeTheme,
+                theme: require('prism-react-renderer/themes/github'),
+                darkTheme: require('prism-react-renderer/themes/dracula'),
             },
         }),
 };

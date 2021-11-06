@@ -1,42 +1,31 @@
 const projects = require('../projects');
 const path = require('path');
-const fs = require('fs')
 const jetpack = require('fs-jetpack');
 
-async function handleProject(project) {
-    console.log(`Project ${project.name}`);
+const simpleGit = require('simple-git');
+const git = simpleGit();
 
-    const packagePath = path.resolve(__dirname, '..', 'node_modules', '@pallad', project.name);
-    const docsPath = path.resolve(packagePath, 'docs');
-    if (!fs.existsSync(docsPath)) {
-        console.error(`No docs for ${project.npmPackageName}`);
+async function handleProject(project) {
+    if (!project.hasDocs) {
         return;
     }
 
     console.log(`Copying docs for ${project.name}`)
     const finalDocsPath = path.resolve(__dirname, '..', 'projects', project.name, 'docs');
+    await jetpack.remove(finalDocsPath);
+
+    const localRepositoryPath = path.resolve(__dirname, '..', 'repositories', project.name);
+
+    console.log(`Cloning repository: ${project.githubUrl}`);
+    await jetpack.remove(localRepositoryPath);
+    await git.clone(`${project.githubUrl}.git`, localRepositoryPath, {
+        '--branch': 'master',
+        '--single-branch': true,
+        '--depth': 1
+    });
+    const docsPath = path.resolve(localRepositoryPath, 'docs');
     await jetpack.copy(docsPath, finalDocsPath, {overwrite: true});
     console.log(`Done`);
-
-    if (project.apiFiles) {
-        console.log('Generating API docs');
-        const apiDocsPath = path.resolve(finalDocsPath, 'API');
-        jetpack.dir(apiDocsPath);
-        for (const file of project.apiFiles) {
-            console.log(`Generating API docs for file ${file}`);
-            const apiFilePath = path.resolve(packagePath, file);
-            const baseFileName = path.basename(apiFilePath, '.d.ts');
-
-            fs.writeFileSync(
-                path.resolve(apiDocsPath, baseFileName + '.md'),
-                `#${baseFileName}
-\`\`\`typescript
-${fs.readFileSync(apiFilePath, 'utf8')}
-\`\`\`
-`
-            );
-        }
-    }
 }
 
 (async () => {
