@@ -7,7 +7,7 @@ const projects = require('./projects');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
     title: 'Pallad',
-    url: 'https://your-docusaurus-test-site.com',
+    url: 'https://pallad.dev',
     baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
