@@ -48,8 +48,7 @@ const config = {
             {
                 path: 'src/pages'
             }
-        ],
-        '@docusaurus/plugin-google-analytics'
+        ]
     ],
 
     themeConfig:
