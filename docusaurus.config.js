@@ -48,7 +48,8 @@ const config = {
             {
                 path: 'src/pages'
             }
-        ]
+        ],
+        '@docusaurus/plugin-google-analytics'
     ],
 
     themeConfig:
@@ -76,6 +77,10 @@ const config = {
             prism: {
                 theme: require('prism-react-renderer/themes/github'),
                 darkTheme: require('prism-react-renderer/themes/dracula'),
+            },
+            googleAnalytics: {
+                trackingID: 'G-7FRLR06LSJ',
+                anonymizeIP: true,
             },
         }),
 };
