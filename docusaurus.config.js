@@ -77,7 +77,7 @@ const config = {
                 theme: require('prism-react-renderer/themes/github'),
                 darkTheme: require('prism-react-renderer/themes/dracula'),
             },
-            googleAnalytics: {
+            gtag: {
                 trackingID: 'G-7FRLR06LSJ',
                 anonymizeIP: true,
             },
