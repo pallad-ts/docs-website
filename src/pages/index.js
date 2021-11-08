@@ -1,7 +1,5 @@
 import React from 'react';
-import clsx from 'clsx';
 import Layout from '@theme/Layout';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import * as projects from '../../projects';
 import {NPMBadge} from "../NPMBadge/GithubBadge";
@@ -15,10 +13,8 @@ function displayProject(project, index) {
 }
 
 export default function Home() {
-    const {siteConfig} = useDocusaurusContext();
-
     const {
-        navbar: {title: navbarTitle, logo = {src: ''}},
+        navbar: {logo = {src: ''}},
     } = useThemeConfig();
     const logoSources = {
         light: useBaseUrl(logo.src),
