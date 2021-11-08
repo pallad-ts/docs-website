@@ -67,6 +67,16 @@ const config = {
                         label: 'GitHub',
                         position: 'right',
                     },
+                    {
+                        href: 'https://twitter.com/palladts',
+                        label: 'Twitter',
+                        position: 'right',
+                    },
+                    {
+                        href: 'https://discord.gg/KCvnfzhNAq',
+                        label: 'Discord',
+                        position: 'right'
+                    }
                 ],
             },
             footer: {
