@@ -18,6 +18,14 @@ const data = [
     {
         name: 'secret',
         description: 'Prevent your secrets from accidental leak'
+    },
+    {
+        name: 'range',
+        description: 'Range structure'
+    },
+    {
+        name: 'compare',
+        description: 'Custom sorting library inspired by Rust'
     }
 ]
 
