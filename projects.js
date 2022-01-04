@@ -16,6 +16,11 @@ const data = [
         description: 'Run cascade actions from your code instead database'
     },
     {
+        name: 'entity-ref',
+        displayName: 'Entity reference',
+        description: 'Create small references to entities'
+    },
+    {
         name: 'secret',
         description: 'Prevent your secrets from accidental leak'
     },
@@ -26,7 +31,7 @@ const data = [
     {
         name: 'compare',
         description: 'Custom sorting library inspired by Rust'
-    }
+    },
 ]
 
 module.exports = data.map(x => {
