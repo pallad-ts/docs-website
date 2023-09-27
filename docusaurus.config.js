@@ -25,6 +25,10 @@ const config = {
                 theme: {
                     customCss: require.resolve('./src/css/custom.css'),
                 },
+                gtag: {
+                    trackingID: 'G-7FRLR06LSJ',
+                    anonymizeIP: true,
+                },
             }),
         ],
     ],
@@ -71,11 +75,6 @@ const config = {
                         href: 'https://twitter.com/palladts',
                         label: 'Twitter',
                         position: 'right',
-                    },
-                    {
-                        href: 'https://discord.gg/KCvnfzhNAq',
-                        label: 'Discord',
-                        position: 'right'
                     }
                 ],
             },
@@ -86,10 +85,6 @@ const config = {
             prism: {
                 theme: require('prism-react-renderer/themes/github'),
                 darkTheme: require('prism-react-renderer/themes/dracula'),
-            },
-            gtag: {
-                trackingID: 'G-7FRLR06LSJ',
-                anonymizeIP: true,
             },
         }),
 };

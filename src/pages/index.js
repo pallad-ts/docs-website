@@ -26,7 +26,7 @@ export default function Home() {
             title={`Pallad - High quality typescript libraries`}>
             <main>
                 <div className={styles.hero}>
-                    <ThemedImage sources={logoSources} alt="" />
+                    <ThemedImage sources={logoSources} alt=""/>
                     <h1 className={styles.heroTitle}>Pallad</h1>
                     <div className={styles.heroSubtitle}>High quality Typescript libraries</div>
                 </div>
@@ -46,7 +46,7 @@ export default function Home() {
 
 
 function ProjectInfo({project}) {
-    const link = project.hasDocs ? '/' + project.name:project.githubUrl;
+    const link = project.hasDocs ? '/' + project.name : project.githubUrl;
 
     return <article className={styles.projectInfo} data-with-docs={project.hasDocs}>
         <a href={link} className={styles.projectIntoLink}>

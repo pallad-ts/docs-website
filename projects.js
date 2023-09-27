@@ -7,6 +7,12 @@ const data = [
         description: 'Create type-safe configuration'
     },
     {
+        name: 'access-control',
+        displayName: "Access Control",
+        hasDocs: true,
+        description: 'Control access to system actions through permissions'
+    },
+    {
         name: 'app-env',
         displayName: 'App environment',
         description: 'Detect environment like: prod, test or more and adapt to it'
