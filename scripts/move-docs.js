@@ -16,9 +16,12 @@ async function handleProject(project) {
 
     const localRepositoryPath = path.resolve(__dirname, '..', 'repositories', project.name);
 
-    const localRepositoryInfo = fs.lstatSync(localRepositoryPath);
-    if (localRepositoryInfo.isSymbolicLink()) {
-        console.warn(`Local repository for project: ${project.githubUrl} is a symbolic link - Ignoring`);
+    if (fs.existsSync(localRepositoryPath)) {
+        const localRepositoryInfo = fs.lstatSync(localRepositoryPath);
+
+        if (localRepositoryInfo.isSymbolicLink()) {
+            console.warn(`Local repository for project: ${project.githubUrl} is a symbolic link - Ignoring`);
+        }
     } else {
         console.log(`Cloning repository: ${project.githubUrl}`);
         await jetpack.remove(localRepositoryPath);
