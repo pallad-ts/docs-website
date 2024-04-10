@@ -17,6 +17,7 @@ async function handleProject(project) {
     const localRepositoryPath = path.resolve(__dirname, '..', 'repositories', project.name);
 
     if (fs.existsSync(localRepositoryPath)) {
+        console.log('Locale repository path exists');
         const localRepositoryInfo = fs.lstatSync(localRepositoryPath);
 
         if (localRepositoryInfo.isSymbolicLink()) {
